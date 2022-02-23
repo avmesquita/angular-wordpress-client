@@ -1,0 +1,16 @@
+<ng-container *ngIf="(wpPosts$ | async) as Posts">
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date</th>
+    </tr>
+    <tr *ngFor="let post of Posts">
+        <td [innerHTML]="post.title.rendered"></td>
+        <td [innerHTML]="post.content.rendered"></td>
+    <td>{{post.date}}</td>
+    </tr>
+</table>
+
+</ng-container>

@@ -1,0 +1,17 @@
+<ng-container *ngIf="(wpPages$ | async) as Pages">
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Date</th>
+        </tr>
+        <tr *ngFor="let page of Pages">
+            <td [innerHTML]="page.title.rendered"></td>
+            <td [innerHTML]="page.content.rendered"></td>
+            <td>{{page.date}}</td>
+        </tr>
+    </table>
+    
+    </ng-container>
+    
