@@ -70,4 +70,8 @@ export class WordpressService {
     return this.http.get( environment.wordpressUrl + environment.wpPlugins );
   }
 
+  getSearchPosts(query: string): Observable<any> {
+    return this.http.get( environment.wordpressUrl + environment.wpPosts + '?search=' + query );
+  }
+
 }
