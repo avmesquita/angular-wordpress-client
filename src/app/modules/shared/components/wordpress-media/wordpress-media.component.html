@@ -5,13 +5,17 @@
 
 <ng-container *ngIf="message.length === 0 && (wpMedias$ | async) as Medias">
 
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let media of Medias">
-            <td [innerHTML]="media.link"></td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let media of Medias">
+                <mat-card style="width: 18rem;padding: 5px;max-height: 300px;" >
+                    <mat-card-content>
+                        <img mat-card-md-image [src]="media.link" >
+                    </mat-card-content>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>
     
 </ng-container>

@@ -4,17 +4,21 @@
 
 <ng-container *ngIf="message.length === 0 && (wpPosts$ | async) as Posts">
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Date</th>
-    </tr>
-    <tr *ngFor="let post of Posts">
-        <td [innerHTML]="post.title.rendered"></td>
-        <td [innerHTML]="post.content.rendered"></td>
-    <td>{{post.date}}</td>
-    </tr>
-</table>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let post of Posts">
+                <mat-card style="width: 18rem;padding: 5px;max-height: 300px;" >
+                    <mat-card-title-group>
+                        <mat-card-title>{{post.title.rendered}}</mat-card-title>
+                        <mat-card-subtitle>{{post.date}}</mat-card-subtitle>
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        <p [innerHTML]="post.excerpt.rendered"></p>
+                    </mat-card-content>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>
 
 </ng-container>

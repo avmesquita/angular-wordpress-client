@@ -13,6 +13,7 @@ import { WordpressSettingsComponent } from './components/wordpress-settings/word
 import { WordpressUsersComponent } from './components/wordpress-users/wordpress-users.component';
 import { WordpressThemesComponent } from './components/wordpress-themes/wordpress-themes.component';
 import { WordpressPluginsComponent } from './components/wordpress-plugins/wordpress-plugins.component';
+import { AngularMaterialModule } from 'src/app/angular-material.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { WordpressPluginsComponent } from './components/wordpress-plugins/wordpr
     WordpressPluginsComponent
   ],
   imports: [
-    CommonModule,    
+    CommonModule,
+    AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
   ],

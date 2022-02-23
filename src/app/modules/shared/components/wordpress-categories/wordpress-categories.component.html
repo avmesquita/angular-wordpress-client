@@ -4,13 +4,22 @@
 </ng-container>
 
 <ng-container *ngIf="message.length === 0 && (wpCategories$ | async) as Categories">
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let category of Categories">
-            <td [innerHTML]="category.name"></td>
-        </tr>
-    </table>
+
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let category of Categories">
+                <mat-card style="width: 18rem;padding: 5px;" >
+                    <mat-card-title-group>
+                        <mat-card-title>{{ category.name }}</mat-card-title>
+                        <mat-card-subtitle>{{ category.count }}</mat-card-subtitle>
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        <p [innerHTML]="category.description"></p>
+                    </mat-card-content>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>
     
 </ng-container>

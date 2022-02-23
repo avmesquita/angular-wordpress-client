@@ -4,18 +4,22 @@
 
 <ng-container *ngIf="message.length === 0 && (wpPages$ | async) as Pages">
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Date</th>
-        </tr>
-        <tr *ngFor="let page of Pages">
-            <td [innerHTML]="page.title.rendered"></td>
-            <td [innerHTML]="page.content.rendered"></td>
-            <td>{{page.date}}</td>
-        </tr>
-    </table>
-    
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let page of Pages">
+                <mat-card style="width: 18rem;padding: 5px;max-height: 300px;" >
+                    <mat-card-title-group>
+                        <mat-card-title>{{page.title.rendered}}</mat-card-title>
+                        <mat-card-subtitle>{{page.date}}</mat-card-subtitle>
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        <p [innerHTML]="page.excerpt.rendered"></p>
+                    </mat-card-content>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>
+        
 </ng-container>
     
