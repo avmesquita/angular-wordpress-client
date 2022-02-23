@@ -11,27 +11,27 @@ export class WordpressService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPosts );
+    return this.http.get( environment.wordpressUrl + environment.wpPosts + "?per_page=100" );
   }
 
   getCategories(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpCategories );
+    return this.http.get( environment.wordpressUrl + environment.wpCategories + "?per_page=100" );
   }
 
   getTags(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpTags );
+    return this.http.get( environment.wordpressUrl + environment.wpTags + "?per_page=100" );
   }
 
   getPages(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPages );
+    return this.http.get( environment.wordpressUrl + environment.wpPages + "?per_page=100" );
   }
 
   getComments(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpComments );
+    return this.http.get( environment.wordpressUrl + environment.wpComments + "?per_page=100" );
   }
 
   getTaxonomies(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpTaxonomies );
+    return this.http.get( environment.wordpressUrl + environment.wpTaxonomies + "?per_page=100" );
   }
 
   getMedia(): Observable<any> {

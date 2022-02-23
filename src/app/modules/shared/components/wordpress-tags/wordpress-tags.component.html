@@ -4,13 +4,20 @@
 
 <ng-container *ngIf="message.length === 0 && (wpTags$ | async) as Tags">
 
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let tag of Tags">
-            <td [innerHTML]="tag.name"></td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let tag of Tags">
+                <mat-card style="width: 18rem;padding: 5px;max-height: 300px;margin-bottom: 8px;" >
+                    <mat-card-title-group>
+                        <mat-card-title>{{ tag.name.rendered }}</mat-card-title>
+                    </mat-card-title-group>
+                    <mat-card-content>
+                        <p [innerHTML]="tag.description.rendered"></p>
+                    </mat-card-content>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>    
     
 </ng-container>
