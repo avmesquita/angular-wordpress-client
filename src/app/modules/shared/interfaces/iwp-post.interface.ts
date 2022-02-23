@@ -1,10 +1,11 @@
-import { wpCommentStatus } from "../enums/wp-comment-status";
-import { wpPingStatus } from "../enums/wp-ping-status";
-import { wpStatus } from "../enums/wp-status";
-import { IWpExcerpt } from "./iwp-excerpt";
-import { IWpRendered } from "./iwp-rendered";
+import { wpCommentStatus } from "../enums/wp-comment-status.enum";
+import { wpFormat } from "../enums/wp-format.enum";
+import { wpPingStatus } from "../enums/wp-ping-status.enum";
+import { wpStatus } from "../enums/wp-status.enum";
+import { IWpExcerpt } from "./iwp-excerpt.interface";
+import { IWpRendered } from "./iwp-rendered.interface";
 
-export interface IWpPage {
+export interface IWpPost {
     /* READ ONLY */
     id: number;
     guid: IWpRendered;
@@ -16,7 +17,6 @@ export interface IWpPage {
     generated_slug: string;
 
     /* READ WRITE */
-    parent: number;
     date: string;
     date_gmt: string;
     slug: string;
@@ -28,9 +28,11 @@ export interface IWpPage {
     excerpt: IWpExcerpt;
     featured_media: number;
     comment_status: wpCommentStatus;
-    ping_status: wpPingStatus;    
+    ping_status: wpPingStatus;
+    format: wpFormat;
     meta: any;
     sticky: boolean;
     template: string;
-    menu_order: number;
+    categories: number[];
+    tags: number[];
 }

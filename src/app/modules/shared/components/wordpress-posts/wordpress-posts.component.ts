@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IWpPost } from '../../interfaces/iwp-post';
+import { IWpPost } from '../../interfaces/iwp-post.interface';
 import { WordpressService } from '../../services/wordpress.service';
 
 @Component({
