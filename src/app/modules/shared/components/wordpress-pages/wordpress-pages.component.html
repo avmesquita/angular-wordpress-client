@@ -1,4 +1,8 @@
-<ng-container *ngIf="(wpPages$ | async) as Pages">
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpPages$ | async) as Pages">
 
     <table>
         <tr>
@@ -13,5 +17,5 @@
         </tr>
     </table>
     
-    </ng-container>
+</ng-container>
     

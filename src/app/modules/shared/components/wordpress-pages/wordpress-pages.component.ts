@@ -13,13 +13,16 @@ export class WordpressPagesComponent implements OnInit {
   private wpPages: BehaviorSubject<IWpPage[]> = new BehaviorSubject<IWpPage[]>([]);
   wpPages$ = this.wpPages.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getPages().subscribe(
-      (pages: IWpPage[]) => {
-        debugger
+      (pages: IWpPage[]) => {        
         this.wpPages.next(pages);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {

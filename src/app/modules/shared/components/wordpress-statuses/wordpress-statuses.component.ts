@@ -13,13 +13,17 @@ export class WordpressStatusesComponent implements OnInit {
   private wpStatuses: BehaviorSubject<IWpStatuses[]> = new BehaviorSubject<IWpStatuses[]>([]);
   wpStatuses$ = this.wpStatuses.asObservable();
 
+  message: string = "";
+
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getStatuses().subscribe(
       (statuses: IWpStatuses[]) => {
         debugger
         this.wpStatuses.next(statuses);
       }
-    );
+    ,(error) => {
+      this.message = error.message;
+    });
   }
 
   ngOnInit(): void {

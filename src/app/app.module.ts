@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { httpInterceptorProviders } from './modules/shared/interceptors';
 import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
@@ -16,7 +17,11 @@ import { SharedModule } from './modules/shared/shared.module';
     HttpClientModule,
     SharedModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ 
+    httpInterceptorProviders 
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

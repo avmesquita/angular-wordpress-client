@@ -1,1 +1,16 @@
-<p>wordpress-statuses works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpStatuses$ | async) as Statuses">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let status of Statuses">
+            <td [innerHTML]="status.name"></td>
+        </tr>
+    </table>
+    
+</ng-container>

@@ -1,1 +1,16 @@
-<p>wordpress-plugins works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpPlugins$ | async) as Plugins">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let plugin of Plugins">
+            <td [innerHTML]="plugin.name"></td>
+        </tr>
+    </table>
+    
+</ng-container>

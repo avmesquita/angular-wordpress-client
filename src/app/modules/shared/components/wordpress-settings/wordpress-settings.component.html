@@ -1,1 +1,18 @@
-<p>wordpress-settings works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpSettings$ | async) as Settings">
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        <tr *ngFor="let setting of Settings">
+            <td [innerHTML]="setting.title"></td>
+            <td [innerHTML]="setting.email"></td>
+        </tr>
+    </table>
+    
+</ng-container>

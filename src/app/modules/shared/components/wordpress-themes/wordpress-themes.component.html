@@ -1,1 +1,16 @@
-<p>wordpress-themes works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpThemes$ | async) as Themes">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let theme of Themes">
+            <td [innerHTML]="theme.name"></td>
+        </tr>
+    </table>
+    
+</ng-container>

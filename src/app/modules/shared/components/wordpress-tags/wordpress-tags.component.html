@@ -1,1 +1,16 @@
-<p>wordpress-tags works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpTags$ | async) as Tags">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let tag of Tags">
+            <td [innerHTML]="tag.name"></td>
+        </tr>
+    </table>
+    
+</ng-container>

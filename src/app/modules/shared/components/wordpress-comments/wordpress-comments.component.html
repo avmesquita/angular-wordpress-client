@@ -1,1 +1,16 @@
-<p>wordpress-comments works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpComments$ | async) as Comments">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let comment of Comments">
+            <td [innerHTML]="comment.content.rendered"></td>
+        </tr>
+    </table>
+    
+</ng-container>

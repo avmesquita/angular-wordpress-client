@@ -13,13 +13,17 @@ export class WordpressTypesComponent implements OnInit {
   private wpTypes: BehaviorSubject<IWpType[]> = new BehaviorSubject<IWpType[]>([]);
   wpTypes$ = this.wpTypes.asObservable();
 
+  message: string = ""
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getTypes().subscribe(
       (types: IWpType[]) => {
         debugger
         this.wpTypes.next(types);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {

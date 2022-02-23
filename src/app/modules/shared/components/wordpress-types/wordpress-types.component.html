@@ -1,1 +1,16 @@
-<p>wordpress-types works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpTypes$ | async) as Types">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let type of Types">
+            <td [innerHTML]="type.name"></td>
+        </tr>
+    </table>
+    
+</ng-container>

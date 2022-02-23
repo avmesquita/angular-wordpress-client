@@ -13,13 +13,16 @@ export class WordpressPostsComponent implements OnInit {
   private wpPosts: BehaviorSubject<IWpPost[]> = new BehaviorSubject<IWpPost[]>([]);
   wpPosts$ = this.wpPosts.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getPosts().subscribe(
-      (posts: IWpPost[]) => {
-        debugger
+      (posts: IWpPost[]) => {        
         this.wpPosts.next(posts);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {

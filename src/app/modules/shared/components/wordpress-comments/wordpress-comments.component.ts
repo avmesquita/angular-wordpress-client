@@ -13,13 +13,16 @@ export class WordpressCommentsComponent implements OnInit {
   private wpComments: BehaviorSubject<IWpComment[]> = new BehaviorSubject<IWpComment[]>([]);
   wpComments$ = this.wpComments.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getComments().subscribe(
-      (comments: IWpComment[]) => {
-        debugger
+      (comments: IWpComment[]) => {        
         this.wpComments.next(comments);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {

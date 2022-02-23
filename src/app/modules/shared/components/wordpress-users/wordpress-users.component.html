@@ -1,1 +1,28 @@
-<p>wordpress-users works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+
+<ng-container *ngIf="message.length === 0 && (wpUsers$ | async) as Users">
+
+    <ng-container *ngIf="Users.length > 0">
+
+        <table>
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor="let user of Users">
+                <td [innerHTML]="user.name"></td>
+            </tr>
+        </table>
+
+    </ng-container>
+
+    <ng-container *ngIf="Users.length === 0">
+
+        <p>No users found.</p>
+
+    </ng-container>
+
+    
+</ng-container>

@@ -1,4 +1,8 @@
-<ng-container *ngIf="(wpPosts$ | async) as Posts">
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+<ng-container *ngIf="message.length === 0 && (wpPosts$ | async) as Posts">
 
 <table>
     <tr>

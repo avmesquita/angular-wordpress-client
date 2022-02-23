@@ -1,1 +1,17 @@
-<p>wordpress-media works!</p>
+<ng-container *ngIf="message.length > 0">
+    {{ message }}
+</ng-container>
+
+
+<ng-container *ngIf="message.length === 0 && (wpMedias$ | async) as Medias">
+
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let media of Medias">
+            <td [innerHTML]="media.link"></td>
+        </tr>
+    </table>
+    
+</ng-container>

@@ -13,13 +13,17 @@ export class WordpressMediaComponent implements OnInit {
   private wpMedias: BehaviorSubject<IWpMedia[]> = new BehaviorSubject<IWpMedia[]>([]);
   wpMedias$ = this.wpMedias.asObservable();
 
+  message: string = "";
+
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getMedia().subscribe(
       (medias: IWpMedia[]) => {
         debugger
         this.wpMedias.next(medias);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
 

@@ -14,10 +14,6 @@ export class WordpressService {
     return this.http.get( environment.wordpressUrl + environment.wpPosts );
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpUsers );
-  }
-
   getCategories(): Observable<any> {
     return this.http.get( environment.wordpressUrl + environment.wpCategories );
   }
@@ -50,14 +46,6 @@ export class WordpressService {
     return this.http.get( environment.wordpressUrl + environment.wpStatuses );
   }
 
-  getSettings(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpSettings );
-  }
-
-  getThemes(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpThemes );
-  }
-
   getBlockRenderer(): Observable<any> {
     return this.http.get( environment.wordpressUrl + environment.wpBlockRenderer );
   }
@@ -66,12 +54,27 @@ export class WordpressService {
     return this.http.get( environment.wordpressUrl + environment.wpBlockDirectoryItems );
   }
 
+  getSearchPosts(query: string): Observable<any> {
+    return this.http.get( environment.wordpressUrl + environment.wpPosts + '?search=' + query );
+  }
+
+  /* NEEDS AUTHORIZATION */
+
   getPlugins(): Observable<any> {
     return this.http.get( environment.wordpressUrl + environment.wpPlugins );
   }
 
-  getSearchPosts(query: string): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPosts + '?search=' + query );
+  getSettings(): Observable<any> {
+    return this.http.get( environment.wordpressUrl + environment.wpSettings );
   }
+
+  getThemes(): Observable<any> {
+    return this.http.get( environment.wordpressUrl + environment.wpThemes );
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get( environment.wordpressUrl + environment.wpUsers );
+  }
+
 
 }

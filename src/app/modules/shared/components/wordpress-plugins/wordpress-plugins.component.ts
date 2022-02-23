@@ -13,13 +13,17 @@ export class WordpressPluginsComponent implements OnInit {
   private wpPlugins: BehaviorSubject<IWpPlugin[]> = new BehaviorSubject<IWpPlugin[]>([]);
   wpPlugins$ = this.wpPlugins.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getPlugins().subscribe(
       (plugins: IWpPlugin[]) => {
         debugger
         this.wpPlugins.next(plugins);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
 

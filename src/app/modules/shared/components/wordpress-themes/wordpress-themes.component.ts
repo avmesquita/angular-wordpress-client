@@ -13,13 +13,17 @@ export class WordpressThemesComponent implements OnInit {
   private wpThemes: BehaviorSubject<IWpTheme[]> = new BehaviorSubject<IWpTheme[]>([]);
   wpThemes$ = this.wpThemes.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getThemes().subscribe(
       (themes: IWpTheme[]) => {
         debugger
         this.wpThemes.next(themes);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {

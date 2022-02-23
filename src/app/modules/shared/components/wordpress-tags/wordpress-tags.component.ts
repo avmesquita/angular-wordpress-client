@@ -13,13 +13,17 @@ export class WordpressTagsComponent implements OnInit {
   private wpTags: BehaviorSubject<IWpTag[]> = new BehaviorSubject<IWpTag[]>([]);
   wpTags$ = this.wpTags.asObservable();
 
+  message: string = "";
+  
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getTags().subscribe(
       (tags: IWpTag[]) => {
         debugger
         this.wpTags.next(tags);
       }
-    );
+      ,(error) => {
+        this.message = error.message;
+      });
   }
 
   ngOnInit(): void {
