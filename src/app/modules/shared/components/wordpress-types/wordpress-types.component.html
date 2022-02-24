@@ -6,13 +6,18 @@
 
 <ng-container *ngIf="message.length === 0 && (wpTypes$ | async) as Types">
 
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let type of Types">
-            <td [innerHTML]="type.name"></td>
-        </tr>
-    </table>
+    <div class="grid">  
+        <mat-card class="mat-elevation-z4" *ngFor="let type of Types" style="padding: 5px">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>{{ type.name }}</mat-card-title>
+                    <mat-card-subtitle> </mat-card-subtitle>                        
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>    
     
 </ng-container>

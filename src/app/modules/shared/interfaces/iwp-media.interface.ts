@@ -1,5 +1,6 @@
 import { wpCommentStatus } from "../enums/wp-comment-status.enum";
 import { wpPingStatus } from "../enums/wp-ping-status.enum";
+import { IWpRendered } from "./iwp-rendered.interface";
 
 export interface IWpMedia {
     date: string;
@@ -21,7 +22,7 @@ export interface IWpMedia {
     meta: {};
     template: string;
     alt_text: string;
-    caption: string;
+    caption: IWpRendered;
     description: string;
     media_type: string;
     mime_type: string;

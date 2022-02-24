@@ -6,13 +6,18 @@
 
 <ng-container *ngIf="message.length === 0 && (wpStatuses$ | async) as Statuses">
 
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let status of Statuses">
-            <td [innerHTML]="status.name"></td>
-        </tr>
-    </table>
+    <div class="grid">  
+        <mat-card class="mat-elevation-z4" *ngFor="let status of Statuses" style="padding: 5px">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>{{status.name}}</mat-card-title>
+                    <mat-card-subtitle> </mat-card-subtitle>                        
+                </mat-card-title-group>
+            </mat-card-header>            
+            <mat-card-content>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>    
     
 </ng-container>

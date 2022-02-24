@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IWpTheme } from '../../interfaces/iwp-theme.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -8,7 +8,7 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './wordpress-themes.component.html',
   styleUrls: ['./wordpress-themes.component.scss']
 })
-export class WordpressThemesComponent implements OnInit {
+export class WordpressThemesComponent {
 
   private wpThemes: BehaviorSubject<IWpTheme[]> = new BehaviorSubject<IWpTheme[]>([]);
   wpThemes$ = this.wpThemes.asObservable();
@@ -16,16 +16,18 @@ export class WordpressThemesComponent implements OnInit {
   message: string = "";
   
   constructor(private WordpressService: WordpressService) { 
-    this.WordpressService.getThemes().subscribe(
-      (themes: IWpTheme[]) => {        
-        this.wpThemes.next(themes);
-      }
-      ,(error) => {
-        this.message = error.message;
-      });
+    this.WordpressService.getThemes(1,100).subscribe( (counter) => {
+      const totalPages = counter.headers.get('X-WP-TotalPages');
+      if (totalPages) {                              
+        for (let i = 1; i <= totalPages; i++) {
+          this.WordpressService.getThemes(i,100).subscribe(
+            (dados: any) => {                
+              this.wpThemes.next([...this.wpThemes.getValue(), ...dados.body]);
+            });
+          }
+      }          
+    },(error) => {
+      this.message = error.message;
+    });  
   }
-
-  ngOnInit(): void {
-  }
-
 }

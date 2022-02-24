@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IWpType } from '../../interfaces/iwp-type.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -8,7 +8,7 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './wordpress-types.component.html',
   styleUrls: ['./wordpress-types.component.scss']
 })
-export class WordpressTypesComponent implements OnInit {
+export class WordpressTypesComponent {
 
   private wpTypes: BehaviorSubject<IWpType[]> = new BehaviorSubject<IWpType[]>([]);
   wpTypes$ = this.wpTypes.asObservable();
@@ -16,16 +16,18 @@ export class WordpressTypesComponent implements OnInit {
   message: string = ""
   
   constructor(private WordpressService: WordpressService) { 
-    this.WordpressService.getTypes().subscribe(
-      (types: IWpType[]) => {        
-        this.wpTypes.next(types);
-      }
-      ,(error) => {
-        this.message = error.message;
-      });
+    this.WordpressService.getTypes(1,100).subscribe( (counter) => {
+      const totalPages = counter.headers.get('X-WP-TotalPages');
+      if (totalPages) {                              
+        for (let i = 1; i <= totalPages; i++) {
+          this.WordpressService.getTypes(i,100).subscribe(
+            (dados: any) => {                
+              this.wpTypes.next([...this.wpTypes.getValue(), ...dados.body]);
+            });
+          }
+      }          
+    },(error) => {
+      this.message = error.message;
+    });  
   }
-
-  ngOnInit(): void {
-  }
-
 }

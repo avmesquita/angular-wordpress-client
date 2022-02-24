@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IWpSetting } from '../../interfaces/iwp-setting.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -8,7 +8,7 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './wordpress-settings.component.html',
   styleUrls: ['./wordpress-settings.component.scss']
 })
-export class WordpressSettingsComponent implements OnInit {
+export class WordpressSettingsComponent {
 
   private wpSettings: BehaviorSubject<IWpSetting[]> = new BehaviorSubject<IWpSetting[]>([]);
   wpSettings$ = this.wpSettings.asObservable();
@@ -16,16 +16,18 @@ export class WordpressSettingsComponent implements OnInit {
   message: string = "";
 
   constructor(private WordpressService: WordpressService) { 
-    this.WordpressService.getSettings().subscribe(
-      (settings: IWpSetting[]) => {        
-        this.wpSettings.next(settings);
-      }
-      ,(error) => {
-        this.message = error.message;
-      });
+    this.WordpressService.getSettings(1,100).subscribe( (counter) => {
+      const totalPages = counter.headers.get('X-WP-TotalPages');
+      if (totalPages) {                              
+        for (let i = 1; i <= totalPages; i++) {
+          this.WordpressService.getSettings(i,100).subscribe(
+            (dados: any) => {                
+              this.wpSettings.next([...this.wpSettings.getValue(), ...dados.body]);
+            });
+          }
+      }          
+    },(error) => {
+      this.message = error.message;
+    });  
   }
-
-  ngOnInit(): void {
-  }
-
 }

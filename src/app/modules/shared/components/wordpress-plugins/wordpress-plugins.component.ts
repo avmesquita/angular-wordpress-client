@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IWpPlugin } from '../../interfaces/iwp-plugin.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -8,7 +8,7 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './wordpress-plugins.component.html',
   styleUrls: ['./wordpress-plugins.component.scss']
 })
-export class WordpressPluginsComponent implements OnInit {
+export class WordpressPluginsComponent {
 
   private wpPlugins: BehaviorSubject<IWpPlugin[]> = new BehaviorSubject<IWpPlugin[]>([]);
   wpPlugins$ = this.wpPlugins.asObservable();
@@ -16,17 +16,18 @@ export class WordpressPluginsComponent implements OnInit {
   message: string = "";
   
   constructor(private WordpressService: WordpressService) { 
-    this.WordpressService.getPlugins().subscribe(
-      (plugins: IWpPlugin[]) => {        
-        this.wpPlugins.next(plugins);
-      }
-      ,(error) => {
-        this.message = error.message;
-      });
-  }
-
-
-  ngOnInit(): void {
-  }
-
+    this.WordpressService.getPlugins(1,100).subscribe( (counter) => {
+      const totalPages = counter.headers.get('X-WP-TotalPages');
+      if (totalPages) {                              
+        for (let i = 1; i <= totalPages; i++) {
+          this.WordpressService.getPlugins(i,100).subscribe(
+            (dados: any) => {                
+              this.wpPlugins.next([...this.wpPlugins.getValue(), ...dados.body]);
+            });
+          }
+      }          
+    },(error) => {
+      this.message = error.message;
+    })
+  }  
 }

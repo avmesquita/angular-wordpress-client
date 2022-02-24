@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IWpPost } from '../../interfaces/iwp-post.interface';
-import { IWpMedia } from '../../interfaces/iwp-media.interface';
 import { WordpressService } from '../../services/wordpress.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './wordpress-posts.component.html',
   styleUrls: ['./wordpress-posts.component.scss']
 })
-export class WordpressPostsComponent implements OnInit {
+export class WordpressPostsComponent {
 
   private wpPosts: BehaviorSubject<IWpPost[]> = new BehaviorSubject<IWpPost[]>([]);
   wpPosts$ = this.wpPosts.asObservable();
@@ -17,8 +16,8 @@ export class WordpressPostsComponent implements OnInit {
   message: string = "";
   
   constructor(private WordpressService: WordpressService) { 
-    this.WordpressService.getPosts(1,100).subscribe( (posts) => {
-      const totalPages = posts.headers.get('X-WP-TotalPages');
+    this.WordpressService.getPosts(1,100).subscribe( (counter) => {
+      const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
         for (let i = 1; i <= totalPages; i++) {
           this.WordpressService.getPosts(i,100).subscribe(
@@ -31,9 +30,4 @@ export class WordpressPostsComponent implements OnInit {
       this.message = error.message;
     });  
   }
-
-  ngOnInit(): void {
-
-  }
-
 }
