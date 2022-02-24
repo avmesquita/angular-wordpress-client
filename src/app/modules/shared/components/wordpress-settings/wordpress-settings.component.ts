@@ -19,7 +19,8 @@ export class WordpressSettingsComponent {
     this.WordpressService.getSettings(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpSettings.next([...this.wpSettings.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getSettings(i,100).subscribe(
             (dados: any) => {                
               this.wpSettings.next([...this.wpSettings.getValue(), ...dados.body]);

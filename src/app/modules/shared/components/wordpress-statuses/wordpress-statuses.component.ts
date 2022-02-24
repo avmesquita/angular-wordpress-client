@@ -19,7 +19,8 @@ export class WordpressStatusesComponent {
     this.WordpressService.getStatuses(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpStatuses.next([...this.wpStatuses.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getStatuses(i,100).subscribe(
             (dados: any) => {                
               this.wpStatuses.next([...this.wpStatuses.getValue(), ...dados.body]);

@@ -19,7 +19,8 @@ export class WordpressMediaComponent {
     this.WordpressService.getMedia(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpMedias.next([...this.wpMedias.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getMedia(i,100).subscribe(
             (dados: any) => {                       
               this.wpMedias.next([...this.wpMedias.getValue(), ...dados.body]);

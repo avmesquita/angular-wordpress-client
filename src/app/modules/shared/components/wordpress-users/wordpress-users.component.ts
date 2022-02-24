@@ -19,7 +19,8 @@ export class WordpressUsersComponent {
     this.WordpressService.getUsers(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpUsers.next([...this.wpUsers.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getUsers(i,100).subscribe(
             (dados: any) => {                         
               this.wpUsers.next([...this.wpUsers.getValue(), ...dados.body]);

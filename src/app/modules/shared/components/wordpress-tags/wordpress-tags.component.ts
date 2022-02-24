@@ -20,7 +20,8 @@ export class WordpressTagsComponent {
     this.WordpressService.getTags(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpTags.next([...this.wpTags.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getTags(i,100).subscribe(
             (dados: any) => {              
               this.wpTags.next([...this.wpTags.getValue(), ...dados.body]);

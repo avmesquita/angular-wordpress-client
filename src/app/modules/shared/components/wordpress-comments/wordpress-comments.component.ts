@@ -19,7 +19,8 @@ export class WordpressCommentsComponent {
     this.WordpressService.getComments(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpComments.next([...this.wpComments.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getComments(i,100).subscribe(
             (dados: any) => {                
               this.wpComments.next([...this.wpComments.getValue(), ...dados.body]);

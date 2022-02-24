@@ -19,7 +19,8 @@ export class WordpressPostsComponent {
     this.WordpressService.getPosts(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpPosts.next([...this.wpPosts.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getPosts(i,100).subscribe(
             (dados: any) => {                
               this.wpPosts.next([...this.wpPosts.getValue(), ...dados.body]);

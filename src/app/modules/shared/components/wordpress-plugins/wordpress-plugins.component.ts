@@ -19,7 +19,8 @@ export class WordpressPluginsComponent {
     this.WordpressService.getPlugins(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpPlugins.next([...this.wpPlugins.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getPlugins(i,100).subscribe(
             (dados: any) => {                
               this.wpPlugins.next([...this.wpPlugins.getValue(), ...dados.body]);

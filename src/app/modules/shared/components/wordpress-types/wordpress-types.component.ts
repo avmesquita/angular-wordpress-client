@@ -19,7 +19,8 @@ export class WordpressTypesComponent {
     this.WordpressService.getTypes(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpTypes.next([...this.wpTypes.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getTypes(i,100).subscribe(
             (dados: any) => {                
               this.wpTypes.next([...this.wpTypes.getValue(), ...dados.body]);

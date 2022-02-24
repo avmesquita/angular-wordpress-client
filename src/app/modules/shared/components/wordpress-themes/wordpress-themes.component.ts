@@ -19,7 +19,8 @@ export class WordpressThemesComponent {
     this.WordpressService.getThemes(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
       if (totalPages) {                              
-        for (let i = 1; i <= totalPages; i++) {
+        this.wpThemes.next([...this.wpThemes.getValue(), ...counter.body]);
+        for (let i = 2; i <= totalPages; i++) {
           this.WordpressService.getThemes(i,100).subscribe(
             (dados: any) => {                
               this.wpThemes.next([...this.wpThemes.getValue(), ...dados.body]);
