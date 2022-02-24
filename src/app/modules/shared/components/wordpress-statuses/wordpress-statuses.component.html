@@ -1,10 +1,6 @@
 <h2>Statuses</h2>
 
-<ng-container *ngIf="message.length > 0">
-    {{ message }}
-</ng-container>
-
-<ng-container *ngIf="message.length === 0 && (wpStatuses$ | async) as Statuses">
+<ng-container *ngIf="(wpStatuses$ | async) as Statuses">
 
     <div class="grid">  
         <mat-card class="mat-elevation-z4" *ngFor="let status of Statuses" style="padding: 5px">

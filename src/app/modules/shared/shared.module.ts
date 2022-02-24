@@ -15,7 +15,6 @@ import { WordpressThemesComponent } from './components/wordpress-themes/wordpres
 import { WordpressPluginsComponent } from './components/wordpress-plugins/wordpress-plugins.component';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 
-
 @NgModule({
   declarations: [
     WordpressPostsComponent,
@@ -50,6 +49,10 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
     WordpressUsersComponent,
     WordpressThemesComponent,
     WordpressPluginsComponent
+  ],
+  providers: [
+    
   ]
+
 })
 export class SharedModule { }

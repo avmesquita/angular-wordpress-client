@@ -1,10 +1,6 @@
 <h2>Comments</h2>
 
-<ng-container *ngIf="message.length > 0">
-    {{ message }}
-</ng-container>
-
-<ng-container *ngIf="message.length === 0 && (wpComments$ | async) as Comments">
+<ng-container *ngIf="(wpComments$ | async) as Comments">
 
     <div class="grid">  
         <mat-card class="mat-elevation-z4" *ngFor="let comment of Comments" style="padding: 5px">

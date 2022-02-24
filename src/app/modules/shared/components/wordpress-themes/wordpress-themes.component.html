@@ -1,10 +1,6 @@
 <h2>Themes</h2>
 
-<ng-container *ngIf="message.length > 0">
-    {{ message }}
-</ng-container>
-
-<ng-container *ngIf="message.length === 0 && (wpThemes$ | async) as Themes">
+<ng-container *ngIf="(wpThemes$ | async) as Themes">
 
     <div class="grid">  
         <mat-card class="mat-elevation-z4" *ngFor="let theme of Themes" style="padding: 5px">

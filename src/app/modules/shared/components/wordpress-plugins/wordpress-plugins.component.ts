@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatSnackBar, matSnackBarAnimations, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { IWpPlugin } from '../../interfaces/iwp-plugin.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -13,11 +14,11 @@ export class WordpressPluginsComponent {
   private wpPlugins: BehaviorSubject<IWpPlugin[]> = new BehaviorSubject<IWpPlugin[]>([]);
   wpPlugins$ = this.wpPlugins.asObservable();
 
-  message: string = "";
-  
-  constructor(private WordpressService: WordpressService) { 
+  constructor(private _snackBar: MatSnackBar, private WordpressService: WordpressService) {              
     this.WordpressService.getPlugins(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
+      const totalItems = counter.headers.get('X-WP-Total');
+      this._snackBar.open('Found: ' + totalItems.toString(), 'Info');
       if (totalPages) {                              
         this.wpPlugins.next([...this.wpPlugins.getValue(), ...counter.body]);
         for (let i = 2; i <= totalPages; i++) {
@@ -28,7 +29,7 @@ export class WordpressPluginsComponent {
           }
       }          
     },(error) => {
-      this.message = error.message;
+      this._snackBar.open(error.message, 'Error');
     })
   }  
 }

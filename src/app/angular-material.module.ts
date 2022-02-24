@@ -46,6 +46,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { CdkTreeModule } from '@angular/cdk/tree';
 
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
   ],
@@ -95,7 +97,9 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     CdkStepperModule,
     CdkTableModule,
     TextFieldModule,
-    CdkTreeModule
+    CdkTreeModule,
+
+    MatSnackBarModule
   ],
   exports: [
     MatSelectModule,
@@ -145,7 +149,8 @@ import { CdkTreeModule } from '@angular/cdk/tree';
   providers: [  
     MatDatepickerModule,
     MatNativeDateModule,
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-PT' }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-PT' },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500 }}
   ],
 })
 export class AngularMaterialModule { }

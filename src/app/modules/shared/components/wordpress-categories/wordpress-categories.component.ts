@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { IWpCategory } from '../../interfaces/iwp-category.interface';
 import { WordpressService } from '../../services/wordpress.service';
@@ -13,11 +14,11 @@ export class WordpressCategoriesComponent {
   private wpCategories: BehaviorSubject<IWpCategory[]> = new BehaviorSubject<IWpCategory[]>([]);
   wpCategories$ = this.wpCategories.asObservable();
 
-  message: string = "";
-  
-  constructor(private WordpressService: WordpressService) { 
+  constructor(private _snackBar: MatSnackBar, private WordpressService: WordpressService) { 
     this.WordpressService.getCategories(1,100).subscribe( (counter) => {
       const totalPages = counter.headers.get('X-WP-TotalPages');
+      const totalItems = counter.headers.get('X-WP-Total');
+      this._snackBar.open('Found: ' + totalItems.toString(), 'Info');
       if (totalPages) {     
         this.wpCategories.next([...this.wpCategories.getValue(), ...counter.body]);                   
         for (let i = 2; i <= totalPages; i++) {
@@ -28,7 +29,7 @@ export class WordpressCategoriesComponent {
           }
       }          
     },(error) => {
-      this.message = error.message;
+      this._snackBar.open(error.message, 'Error');
     });  
   }
 
