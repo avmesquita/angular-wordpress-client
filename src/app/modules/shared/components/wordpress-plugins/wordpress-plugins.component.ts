@@ -17,8 +17,7 @@ export class WordpressPluginsComponent implements OnInit {
   
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getPlugins().subscribe(
-      (plugins: IWpPlugin[]) => {
-        debugger
+      (plugins: IWpPlugin[]) => {        
         this.wpPlugins.next(plugins);
       }
       ,(error) => {

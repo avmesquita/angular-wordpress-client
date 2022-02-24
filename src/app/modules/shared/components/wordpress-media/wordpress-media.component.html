@@ -1,7 +1,8 @@
+<h2>Media</h2>
+
 <ng-container *ngIf="message.length > 0">
     {{ message }}
 </ng-container>
-
 
 <ng-container *ngIf="message.length === 0 && (wpMedias$ | async) as Medias">
 

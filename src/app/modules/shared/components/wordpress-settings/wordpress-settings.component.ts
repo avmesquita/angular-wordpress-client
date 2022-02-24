@@ -17,8 +17,7 @@ export class WordpressSettingsComponent implements OnInit {
 
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getSettings().subscribe(
-      (settings: IWpSetting[]) => {
-        debugger
+      (settings: IWpSetting[]) => {        
         this.wpSettings.next(settings);
       }
       ,(error) => {

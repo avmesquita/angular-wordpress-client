@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  wordpressUrl: 'http://localhost/wp-json/wp/v2/',
+  wordpressUrl: 'http://localhost/',
+  wordpressServicePathUrl: 'wp-json/wp/v2/',
   wpUsers: 'users/',
   wpPosts: 'posts/',
   wpCategories: 'categories/',

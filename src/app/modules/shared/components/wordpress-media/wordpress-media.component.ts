@@ -17,8 +17,7 @@ export class WordpressMediaComponent implements OnInit {
 
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getMedia().subscribe(
-      (medias: IWpMedia[]) => {
-        debugger
+      (medias: IWpMedia[]) => {        
         this.wpMedias.next(medias);
       }
       ,(error) => {

@@ -17,8 +17,7 @@ export class WordpressUsersComponent implements OnInit {
 
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getUsers().subscribe(
-      (users: IWpUser[]) => {
-        debugger
+      (users: IWpUser[]) => {        
         this.wpUsers.next(users);
       }
     ,(error) => {

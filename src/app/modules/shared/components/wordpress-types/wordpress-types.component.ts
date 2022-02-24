@@ -17,8 +17,7 @@ export class WordpressTypesComponent implements OnInit {
   
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getTypes().subscribe(
-      (types: IWpType[]) => {
-        debugger
+      (types: IWpType[]) => {        
         this.wpTypes.next(types);
       }
       ,(error) => {

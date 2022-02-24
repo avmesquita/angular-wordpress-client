@@ -17,8 +17,7 @@ export class WordpressThemesComponent implements OnInit {
   
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getThemes().subscribe(
-      (themes: IWpTheme[]) => {
-        debugger
+      (themes: IWpTheme[]) => {        
         this.wpThemes.next(themes);
       }
       ,(error) => {

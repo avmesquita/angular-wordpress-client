@@ -1,154 +1,3 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .content {
-    display: flex;    
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  svg.material-icons {
-    height: 24px;
-    width: auto;
-  }
-
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-  }
-</style>
-
 <!-- Toolbar -->
 <mat-toolbar color="primary">
   <div style="margin-left: 10px;">
@@ -160,73 +9,62 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
    <mat-icon>menu</mat-icon>
   </button>
-  <span>Accessing Wordpress Services</span>
+  <span>Acessing Wordpress REST API Service</span>
   <span class="spacer"></span>
 </mat-toolbar>
 
 <div class="content" role="main">
 
-  <h1><b>Accessing Wordpress Services</b></h1>
-
-  <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Posts</h2>
+  <h1><b>Acessing Wordpress REST API Service</b></h1>
+ 
   <app-wordpress-posts></app-wordpress-posts>
 
-  <hr style="border: 2px solid #125699;width: 70%;">
+  <hr style="border: 2px solid #125699;width: 70%">
 
-  <h2>Pages</h2>
   <app-wordpress-pages></app-wordpress-pages>
 
-  <hr style="border: 2px solid #125699;width: 70%;">
+  <!--
 
-  <h2>Categories</h2>
+  <hr style="border: 2px solid #125699;width: 70%;">
+  
   <app-wordpress-categories></app-wordpress-categories>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Comments</h2>
+  
   <app-wordpress-comments></app-wordpress-comments>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Media</h2>
+  
   <app-wordpress-media></app-wordpress-media>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Plugins</h2>
+  
   <app-wordpress-plugins></app-wordpress-plugins>
 
   <hr style="border: 2px solid #125699;width: 70%;">
 
-  <h2>Settings</h2>
   <app-wordpress-settings></app-wordpress-settings>
 
   <hr style="border: 2px solid #125699;width: 70%;">
 
-  <h2>Statuses</h2>
   <app-wordpress-statuses></app-wordpress-statuses>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Tags</h2>
+  
   <app-wordpress-tags></app-wordpress-tags>
 
   <hr style="border: 2px solid #125699;width: 70%;">
 
-  <h2>Themes</h2>
   <app-wordpress-themes></app-wordpress-themes>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Types</h2>
+  
   <app-wordpress-types></app-wordpress-types>
 
   <hr style="border: 2px solid #125699;width: 70%;">
-
-  <h2>Users</h2>
+  
   <app-wordpress-users></app-wordpress-users>
+  -->
 
 </div>
 

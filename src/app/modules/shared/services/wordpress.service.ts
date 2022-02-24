@@ -8,72 +8,91 @@ import { environment } from 'src/environments/environment';
 })
 export class WordpressService {
 
-  constructor(private http: HttpClient) { }
-
-  getPosts(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPosts + "?per_page=100" );
+  private url: string = environment.wordpressUrl + environment.wordpressServicePathUrl;
+   
+  constructor(private http: HttpClient) { 
+    
   }
 
-  getCategories(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpCategories + "?per_page=100" );
+  getPosts(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpPosts + paging, { observe: 'response' });
   }
 
-  getTags(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpTags + "?per_page=100" );
+  getCategories(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpCategories + paging, { observe: 'response' } );
   }
 
-  getPages(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPages + "?per_page=100" );
+  getTags(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpTags + paging, { observe: 'response' });
   }
 
-  getComments(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpComments + "?per_page=100" );
+  getPages(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpPages + paging, { observe: 'response' });
   }
 
-  getTaxonomies(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpTaxonomies + "?per_page=100" );
+  getComments(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpComments + paging, { observe: 'response' });
   }
 
-  getMedia(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpMedia );
+  getTaxonomies(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpTaxonomies + paging, { observe: 'response' });
   }
 
-  getTypes(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpTypes );
+  getMedia(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpMedia + paging, { observe: 'response' });
   }
 
-  getStatuses(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpStatuses );
+  getTypes(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpTypes + paging, { observe: 'response' });
   }
 
-  getBlockRenderer(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpBlockRenderer );
+  getStatuses(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpStatuses + paging, { observe: 'response' });
   }
 
-  getBlockDirectoryItems(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpBlockDirectoryItems );
+  getBlockRenderer(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpBlockRenderer + paging, { observe: 'response' });
   }
 
-  getSearchPosts(query: string): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPosts + '?search=' + query );
+  getBlockDirectoryItems(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpBlockDirectoryItems + paging, { observe: 'response' });
+  }
+
+  getSearchPosts(query: string): Observable<any> {    
+    return this.http.get( this.url + environment.wpPosts + '?search=' + query );
   }
 
   /* NEEDS AUTHORIZATION */
 
-  getPlugins(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpPlugins );
+  getPlugins(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpPlugins + paging, { observe: 'response' });
   }
 
-  getSettings(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpSettings );
+  getSettings(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpSettings + paging, { observe: 'response' });
   }
 
-  getThemes(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpThemes );
+  getThemes(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpThemes + paging, { observe: 'response' });
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get( environment.wordpressUrl + environment.wpUsers );
+  getUsers(page: number = 1, records: number = 100): Observable<any> {
+    const paging = "?page=" + page.toString() + "&per_page=" + records.toString();
+    return this.http.get( this.url + environment.wpUsers + paging, { observe: 'response' });
   }
 
 

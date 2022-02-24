@@ -17,8 +17,7 @@ export class WordpressTagsComponent implements OnInit {
   
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getTags().subscribe(
-      (tags: IWpTag[]) => {
-        debugger
+      (tags: IWpTag[]) => {        
         this.wpTags.next(tags);
       }
       ,(error) => {

@@ -17,8 +17,7 @@ export class WordpressStatusesComponent implements OnInit {
 
   constructor(private WordpressService: WordpressService) { 
     this.WordpressService.getStatuses().subscribe(
-      (statuses: IWpStatuses[]) => {
-        debugger
+      (statuses: IWpStatuses[]) => {        
         this.wpStatuses.next(statuses);
       }
     ,(error) => {
