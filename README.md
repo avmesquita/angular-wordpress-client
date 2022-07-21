@@ -27,3 +27,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Donating
+
+My blog and open source projects are result of my passion for software development, but they require a fair amount of my personal time. If you got value from any of the content I create, then I would appreciate your support by [sponsoring me](https://github.com/sponsors/avmesquita) (either monthly or one-time).
+
+## Copyright and License
+
+Copyright © 2019 - 2022 Andre Mesquita
+
+Licensed under the [GNU General Public License v3.0](https://github.com/avmesquita/angular-wordpress-client/blob/main/LICENSE)
